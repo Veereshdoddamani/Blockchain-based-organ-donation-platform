@@ -10,7 +10,9 @@ const artifact = require('../../build/contracts/DonorContract.json');
 
 // const netid = await web3.eth.net.getId()
 const deployedContract = artifact.networks[5777];
-const contractAddress = deployedContract.address;
+//const contractAddress = deployedContract.address;
+const contractAddress = "0xdDd9a4d5fB03696972535255473F7F8aF2f8FE1f";
+
 
 const MIN_GAS = 1000000;
 
