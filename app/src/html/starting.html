@@ -1,0 +1,929 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Blockchain-Based Organ Donation System</title>
+            <link rel="stylesheet" href="index.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+            <script>
+                (function(){
+                emailjs.init("iQ4pV_02gdfAbY8e0"); 
+                })();
+            </script>
+            <style>
+             
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .primary-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            animation: float 6s ease-in-out infinite;
+
+        }
+        .hero-image img {
+    width: 500px;  
+    height: 300px;   
+    border-radius: 9px; 
+}
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .about-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--light-color);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+       
+        .features-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+        }
+
+        .feature-icon i {
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+        .team-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card img {
+            width: 150px;  
+            height: 180px;
+            border-radius: 50%;  
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+
+
+        .contact-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: var(--text-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .contact-social {
+            margin-top: 40px;
+        }
+
+        .contact-social h4 {
+            margin-bottom: 15px;
+        }
+
+        .contact-social .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-social .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .contact-social .social-icons a:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .contact-form-container h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .contact-form button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 30px;
+            width: auto;
+        }
+
+        .contact-form button i {
+            font-size: 1rem;
+        }
+
+        .map-section {
+        padding: 80px 5%;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        text-align: center;
+        }
+
+        .map-section h2 {
+        font-size: 2.5rem;
+        color: var(--dark-color, #333);
+        margin-bottom: 30px;
+        }
+        .map-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .map-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+        }
+
+        .footer-top {
+            padding: 20px 0 10px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-about {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-about .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-about .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10%;
+            transition: var(--transition);
+        }
+
+        .footer-about .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        .footer-links ul {
+        display: flex;              
+        justify-content: center;   
+         gap: 30px;             
+        list-style: none;          
+        padding: 0;
+        margin: 0;
+        }
+
+        .footer-links ul li {
+         margin: 0; 
+        }
+
+        .footer-links ul li a {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: var(--transition);
+        }
+
+        .footer-links ul li a i {
+        display: none; 
+        }
+
+        .footer-links ul li a:hover {
+        color: var(--primary-color);
+        }
+
+
+
+       
+            </style>
+
+        </head>
+        <body>
+            <header>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>OrganChain</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    <li><a href="mainregister.html" target="_blank">Register</a><a href="mainlogin.html" target="_blank">/Login</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </header>
+            
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <h1>Revolutionizing Organ Donation with Blockchain</h1>
+                    <p>Ensuring transparency, security, and fairness in organ donation using cutting-edge blockchain technology.</p>
+                </div>
+                <div class="hero-image">
+                    <img src="save life.png" alt="Blockchain Organ Donation Illustration">
+                </div>
+            </section>
+            
+            <section id="about" class="about-section">
+                <div class="container">
+                    <h2 class="section-title">About Our System</h2>
+                    <div class="about-content">
+                        <div class="about-image">
+                            <img src="our_system.jpg" alt="About Our System">
+                        </div>
+                        <div class="about-text">
+                            <p>Our platform leverages blockchain technology to provide a tamper-proof and decentralized organ donation process, ensuring trust and efficiency.</p>
+                            <p>By utilizing smart contracts and distributed ledger technology, we eliminate intermediaries, reduce costs, and create a transparent system that benefits both donors and recipients.</p>
+                            <div class="stats-container">
+                                <div class="stat-box">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label">Successful Donations</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">1000+</span>
+                                    <span class="stat-label">Registered Donors</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Partner Hospitals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="features" class="features-section">
+                <div class="container">
+                    <h2 class="section-title">Key Features</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3>Decentralized Matching</h3>
+                            <p>Automated donor and recipient matching based on medical compatibility and priority algorithms.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Real-time Tracking</h3>
+                            <p>Monitor organ availability and transportation in real-time with immutable blockchain records.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <h3>Smart Contracts</h3>
+                            <p>Transparent and automated execution of donation agreements with cryptographic verification.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Data Privacy</h3>
+                            <p>Advanced encryption and access control mechanisms to protect sensitive medical information.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="team" class="team-section">
+                <div class="container">
+                    <h2 class="section-title">Our Team</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <img src="shashank.jpg" alt="Team Member">
+                            <h3>Shashank M</h3>
+                            <p>Computer Science Engineer</p>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/shashank-m-747896282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/m-shashank18" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-card">
+                            <img src="Tarun.jpg" alt="Team Member">
+                            <h3>Tarun S V Naik</h3>
+                            <p>Blockchain Developer</p>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/tarun-s-v-naik-128b2b30b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/Tarun-s-v-naik" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-card">
+                            <img src="abhijith.jpg" alt="Team Member">
+
+                            <h3>V Sai Abhijith</h3>
+                            <p>Operations Manager</p>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/v-sai-abhijith-91326828a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/VSaiAbhijith" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-card">
+                            <img src="Veeresh.jpg" alt="Team Member">
+                            <h3>Veeresh Doddamani</h3>
+                            <p>Data Security Expert</p>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/veeresh-doddamani-1151892b5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/Veereshdoddamani" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Have questions about our blockchain organ donation system? We're here to help.</p>
+                    
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <h3>Contact Information</h3>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>blockchain.organdonation@gmail.com</p>
+                                </div>
+                            </div>
+                
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>123 Blockchain Avenue, Tech City</p>
+                                </div>
+                            </div>
+                            <div class="contact-social">
+                                <h4>Follow Us</h4>
+                                <div class="social-icons">
+                                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form-container">
+                            <h3>Send Us a Message</h3>
+                            <form id="contactForm" class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" name="name" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email</label>
+                                        <input type="email" name="email" placeholder="Enter your email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" name="subject" placeholder="Enter subject">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </form>
+                            <script>
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            emailjs.sendForm("service_ftwp6np", "template_e5913cj", this)
+            .then(function(response) {
+                alert("✅ Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            }, function(error) {
+                alert("❌ Failed to send message. Try again.");
+                console.error("EmailJS Error:", error);
+            });
+        });
+        </script>
+                        </div>  
+                    </div>
+                </div>
+            </section>
+            
+            <section id="map" class="map-section">
+    <h2>Bangalore Location</h2>
+    <div class="map-container" style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+        <iframe
+            src="https://www.google.com/maps?q=hospitals+in+Bangalore&output=embed"
+            width="100%"
+            height="600"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+            <footer>
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="footer-content">
+                            
+                            <div class="footer-links">
+                                <ul>
+                                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                                    <li><a href="#team"><i class="fas fa-chevron-right"></i> Team</a></li>
+                                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              
+            </footer>
+            
+
+            <script src="script.js"></script>
+        </body>
+        </html>

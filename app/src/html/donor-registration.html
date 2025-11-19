@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/organ-donation-logo-new.svg">
+        <script src="../main.js"></script>
+
+        <title>Donor Registration</title>
+
+<style>
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom right, #dff7ff, #eef4ff);
+    margin: 0;
+    padding: 40px 0;
+}
+
+.form-bg {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 18px;
+    width: 75%;
+    margin: auto;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transition: 0.4s;
+}
+
+.form-bg:hover {
+    transform: scale(1.01);
+}
+
+h3 {
+    font-size: 2.4rem !important;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800 !important;
+    color: #2c2c2c;
+    letter-spacing: 1px;
+}
+
+.form-bg p {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-bg input,
+.form-bg select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid #cdd5e0;
+    outline: none;
+    font-size: 1rem;
+    background: #f8fcff;
+    transition: 0.3s ease;
+}
+
+.form-bg input:focus,
+.form-bg select:focus {
+    border-color: #43c7ff;
+    box-shadow: 0 0 8px rgba(63, 215, 253, 0.5);
+}
+
+
+#group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#group label {
+    background: #f4fbff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #d3eafd;
+    transition: 0.3s;
+}
+
+#group label:hover {
+    background: #e1f3ff;
+    transform: translateY(-2px);
+}
+
+#checkbox #group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+#checkbox #group label {
+    padding: 12px;
+    border-radius: 10px;
+    background: #f0faff;
+    border: 1px solid #c8ebff;
+    transition: 0.3s;
+}
+
+#checkbox #group label:hover {
+    background: #dff2ff;
+    border-color: #84d8ff;
+}
+
+
+.btn.register {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3fd7fd, #4b8bff);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: 10px;
+}
+
+.btn.register:hover {
+    background: linear-gradient(135deg, #4b8bff, #3fd7fd);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+}
+
+#donorCard {
+    width: 340px;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f0faff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+#donorCard h3 {
+    font-size: 1.6rem !important;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+#donorCard p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.consent-section {
+    margin-top: 25px;
+    background: #f7fbff;
+    padding: 25px;
+    border-radius: 15px;
+    border: 0.5px solid #d0e4f5;
+    width: 80%;            
+}
+
+
+.consent-section p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 18px !important;
+}
+
+.consent-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+
+    background: #ffffff;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #e3eef9;
+    margin-bottom: 12px;
+    width: 100% !important;
+    max-width: 700px !important;       
+}
+
+.consent-item input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.consent-item label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left !important;
+    width: 100% !important;
+    word-wrap: break-word;
+}
+
+
+
+
+.organ-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #dce7f3;
+}
+
+.organ-title {
+    font-weight: 700;
+    color: #1e4a68;
+    margin-bottom: 10px;
+}
+
+.organ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px 15px;
+}
+
+.organ-grid label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    background: #f8fbff;
+    border-radius: 10px;
+    border: 1px solid #dce7f3;
+    cursor: pointer;
+}
+
+.organ-grid label:hover {
+    background: #e6f3ff;
+    border-color: #a3d1ff;
+}
+
+</style>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+   (function(){
+      emailjs.init("2vlgmOf1oWpcqf0hD");
+   })();
+</script>
+
+
+    </head>
+
+    <body>
+
+<h3 style="
+    text-align: center; 
+    font-weight: 700; 
+    color: #2c2c2c; 
+    margin-bottom: 20px; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+">
+    Register an organ donor
+</h3>
+
+    <div class="col-md-4 form-bg">
+    <p>Full Name: <input type="text" id="DonorFullName" placeholder="Full name"></p>
+    <p>Age: <input type="number" id="DonorAge" placeholder="Age"></p>
+    <p>Email: <input type="email" id="DonorEmail" placeholder="Email address"></p>
+    <p>Phone: <input type="tel" id="DonorPhone" placeholder="Phone number"></p>
+    <p>Address: <input type="text" id="DonorAddress" placeholder="Street Address"></p>
+    <p>City: <input type="text" id="DonorCity" placeholder="City"></p>
+    <p>State: <input type="text" id="DonorState" placeholder="State"></p>
+    
+    <form>
+        <label><p>Gender:</p></label>
+        <div id="group">
+            <label>
+                <input type="radio" name="gender" value="Male">
+                <span>Male</span>
+            </label>
+            <label>
+                <input type="radio" name="gender" value="Female">
+                <span>Female</span>
+            </label>
+            <label>
+                <input type="radio" name="gender" value="Others">
+                <span>Others</span>
+            </label>
+        </div>
+    </form>
+
+    <p>Medical ID:  <input type="text" id="DonorMedicalID" placeholder="Enter 12-digit Aadhaar Number"
+           maxlength="12"
+           oninput="this.value=this.value.replace(/[^0-9]/g,'');"></p>
+
+    <form>
+        <label><p>Blood Type:</p></label>
+        <select name="bloodtype" id="DonorBloodType">
+            <option value="A-">A-</option>
+            <option value="A+">A+</option>
+            <option value="B-">B-</option>
+            <option value="B+">B+</option>
+            <option value="AB-">AB-</option>
+            <option value="AB+">AB+</option>
+            <option value="O-">O-</option>
+            <option value="O+">O+</option>
+        </select>
+    </form><br>
+    <p><strong>Donation Type:</strong></p>
+        <select id="donationType" onchange="toggleOrganSections()">
+        <option value="">-- Select Donation Type --</option>
+        <option value="living">Living Donation</option>
+        <option value="deceased">After Death Donation</option>
+        </select>
+
+
+<div id="livingOrgans" class="organ-box" style="display:none;">
+    <p class="organ-title">Living Donation – Organs You Can Donate While Alive</p>
+
+    <div class="organ-grid">
+        <label><input type="checkbox" name="Organ" value="Left Kidney"> Left Kidney</label>
+        <label><input type="checkbox" name="Organ" value="Right Kidney"> Right Kidney</label>
+        <label><input type="checkbox" name="Organ" value="part of Liver"> part of Liver</label>
+        <label><input type="checkbox" name="Organ" value="Part of lung"> Part of lung</label>
+        <label><input type="checkbox" name="Organ" value="Skin"> Skin</label>
+        <label><input type="checkbox" name="Organ" value="Part of Pancreas"> Part of Pancreas</label>
+        <label><input type="checkbox" name="Organ" value=" part of Intestine"> Part of Intestine</label>
+        <label><input type="checkbox" name="Organ" value="Bone Marrow"> Bone Marrow</label>
+        <label><input type="checkbox" name="Organ" value="Tendon"> Tendon</label>
+        <label><input type="checkbox" name="Organ" value="Cartilage"> Cartilage</label>
+    </div>
+</div>
+
+<div id="deceasedOrgans" class="organ-box" style="display:none;">
+    <p class="organ-title">After Death – Organs You Can Donate</p>
+
+    <div class="organ-grid">
+        <label><input type="checkbox" name="Organ" value="Heart"> Heart</label>
+        <label><input type="checkbox" name="Organ" value="Lungs"> Lungs </label>
+        <label><input type="checkbox" name="Organ" value="Liver"> Liver</label>
+        <label><input type="checkbox" name="Organ" value="Kidneys"> Kidneys</label>
+        <label><input type="checkbox" name="Organ" value="Pancreas"> Pancreas</label>
+        <label><input type="checkbox" name="Organ" value="Intestine"> Intestine</label>
+        <label><input type="checkbox" name="Organ" value="Corneas"> Corneas (Eyes)</label>
+        <label><input type="checkbox" name="Organ" value="Skin"> Skin</label>
+        <label><input type="checkbox" name="Organ" value="Tendon"> Tendon</label>
+        <label><input type="checkbox" name="Organ" value="Cartilage"> Cartilage</label>
+    </div>
+</div>
+
+
+
+    <p>Weight (kg): <input type="number" id="DonorWeight" placeholder="Weight"></p>
+    <p>Height (cm): <input type="number" id="DonorHeight" placeholder="Height"></p>
+    <p>Emergency Contact Name: <input type="text" id="DonorEmergencyName" placeholder="Full Name"></p>
+    <p>Emergency Contact Phone: <input type="tel" id="DonorEmergencyPhone" placeholder="Phone Number"></p>
+    <p>Relationship with Emergency Contact: <input type="text" id="DonorEmergencyRelation" placeholder="e.g., Father, Sister"></p>
+    <p>Date of Birth: <input type="date" id="DonorDOB"></p>
+<p>Existing Medical Conditions: <input type="text" id="DonorMedicalConditions" placeholder="e.g., Diabetes, Hypertension"></p>
+<p>Hospital / Medical Center: <input type="text" id="DonorHospital" placeholder="Hospital or Clinic Name"></p>
+
+
+
+<p>
+  Registration Date:
+  <input type="date" id="DonorRegistrationDate">
+</p>
+
+<p>Preferred Donation Type: 
+   <select id="DonorDonationType2">
+       <option value="After Death">After Death</option>
+       <option value="Living Donation">Living Donation</option>
+   </select>
+</p>
+
+<div class="consent-section" style="margin-top: 20px;">
+    <p style="font-weight: 600; margin-bottom: 10px;">Consent:</p>
+
+    <div class="consent-item">
+        <input type="checkbox" id="DonorConsent">
+        <label for="DonorConsent">I hereby consent to donate my organs after death.</label>
+    </div>
+
+    <div class="consent-item">
+        <input type="checkbox" id="DonorConsent1">
+        <label for="DonorConsent1">I confirm that all the information provided above is true to the best of my knowledge.</label>
+    </div>
+
+    <div class="consent-item">
+        <input type="checkbox" id="DonorConsent2">
+        <label for="DonorConsent2">I understand that my organs will be donated voluntarily without any monetary benefit.</label>
+    </div>
+
+    <div class="consent-item">
+        <input type="checkbox" id="DonorConsent3">
+        <label for="DonorConsent3">I authorize medical authorities to access my medical records for donation purposes.</label>
+    </div>
+
+    <div class="consent-item">
+        <input type="checkbox" id="DonorConsent4">
+        <label for="DonorConsent4">I am aware that I can withdraw my consent for organ donation at any time.</label>
+    </div>
+</div>
+
+
+<div id="register">
+    <button type="submit" class="btn btn-primary register" onclick="App.register('Donor'); registerDonor();">
+        Register
+    </button>
+</div>
+
+
+<div id="donorCard" style="
+    width: 300px;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f2f2f2;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    display: none;
+">
+    <h3>Donor Registered Successfully</h3>
+    <p><strong>Name:</strong> <span id="cardName"></span></p>
+    <p><strong>Medical ID:</strong> <span id="cardID"></span></p>
+    <p><strong>Email:</strong> <span id="cardEmail"></span></p>
+</div>
+
+
+
+<script>
+    const today = new Date().toISOString().split("T")[0];
+  document.getElementById("DonorRegistrationDate").value = today;
+
+
+function registerDonor() {
+    const name  = document.getElementById("DonorFullName").value;
+    const email = document.getElementById("DonorEmail").value;
+    const id    = document.getElementById("AadhaarNumber").value; 
+    const blood = document.getElementById("DonorBloodType").value;
+
+    let selectedOrgans = [];
+    document.querySelectorAll("input[name='Organ']:checked").forEach(o => {
+        selectedOrgans.push(o.value);
+    });
+
+    if (name === "" || email === "" || id === "") {
+        alert("Please fill Name, Email, and Medical ID.");
+        return;
+    }
+
+    if (selectedOrgans.length === 0) {
+        alert("Please select at least one organ.");
+        return;
+    }
+
+    const donorObj = {
+        name: name,
+        email: email,
+        id: id,
+        blood: blood,
+        organs: selectedOrgans
+    };
+
+    let donors = JSON.parse(localStorage.getItem("donors")) || [];
+    donors.push(donorObj);
+    localStorage.setItem("donors", JSON.stringify(donors));
+
+
+    document.getElementById("cardName").textContent  = name;
+    document.getElementById("cardID").textContent    = id;
+    document.getElementById("cardEmail").textContent = email;
+    document.getElementById("donorCard").style.display = "block";
+
+
+    sendConfirmationEmail(email, name, id);
+
+    document.getElementById("DonorFullName").value = "";
+    document.getElementById("DonorEmail").value = "";
+}
+
+
+
+
+function registerDonor() {
+    const name = document.getElementById("DonorFullName").value;
+    const id = document.getElementById("DonorMedicalID").value;
+
+    if(name === "" || id === "") {
+        alert("Please fill in Name and Medical ID.");
+        return;
+    }
+    document.getElementById("cardName").textContent = name;
+    document.getElementById("cardID").textContent = id;
+    document.getElementById("donorCard").style.display = "block";
+
+    document.getElementById("DonorFullName").value = "";
+    document.getElementById("DonorMedicalID").value = "";
+}
+
+
+function registerDonor() {
+    const name = document.getElementById("DonorFullName").value;
+    const id = document.getElementById("DonorMedicalID").value;
+    const email = document.getElementById("DonorEmail").value;
+
+    if(name === "" || id === "" || email === "") {
+        alert("Please fill in Name, Medical ID, and Email.");
+        return;
+    }
+    if (id.length !== 12) {
+    alert("Aadhaar number must be 12 digits.");
+    return;
+    }
+    
+    document.getElementById("cardName").textContent = name;
+    document.getElementById("cardID").textContent = id;
+    document.getElementById("cardEmail").textContent = email;
+    document.getElementById("donorCard").style.display = "block";
+
+    sendConfirmationEmail(email, name, id);
+
+    document.getElementById("DonorFullName").value = "";
+    document.getElementById("DonorMedicalID").value = "";
+    document.getElementById("DonorEmail").value = "";
+}
+
+
+
+function sendConfirmationEmail(email, name, id) {
+    emailjs.send("service_e90fufu", "template_6d4f5cm", {
+        donor_email: email,
+        donor_name: name,
+        donor_id: id
+    })
+    .then(function () {
+        alert("Confirmation email sent successfully!");
+    }, function (error) {
+        alert("Failed to send email. Error: " + JSON.stringify(error));
+    });
+}
+
+
+
+
+
+
+function toggleOrganSections() {
+    let type = document.getElementById("donationType").value;
+
+    document.getElementById("livingOrgans").style.display = "none";
+    document.getElementById("deceasedOrgans").style.display = "none";
+
+    if (type === "living") {
+        document.getElementById("livingOrgans").style.display = "block";
+    }
+    else if (type === "deceased") {
+        document.getElementById("deceasedOrgans").style.display = "block";
+    }
+}
+
+</script>
+
+
+</div>
+
+                <div class="container">
+                    <div class="row center-box">
+                        <div class="col-md-5">
+                            <div class="alert warning">
+                                <span id="DonorInputCheck"></span> 
+                                <span class="closebtn" onclick="App.closeAlert();">&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    </body>
+</html>

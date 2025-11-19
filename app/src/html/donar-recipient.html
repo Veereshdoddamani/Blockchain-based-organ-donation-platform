@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organ Donation Platform</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+  <script src="https://kit.fontawesome.com/2b1f5b67c0.js" crossorigin="anonymous"></script>
+
+  <style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #7F7FD5, #86A8E7, #91EAE4);
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    font-size: 2.7rem;
+    font-weight: 800;
+    max-width: 750px;
+    line-height: 1.4;
+    margin-bottom: 18px;
+    color: #fff;
+    text-shadow: 0px 4px 20px rgba(0,0,0,0.4);
+    animation: fadeIn 1.2s ease forwards;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 650px;
+    opacity: 0.92;
+    animation: fadeIn 1.4s ease forwards;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.btn-container {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    animation: fadeIn 1.6s ease forwards;
+}
+
+.steel-btn {
+    padding: 18px 40px;
+    border-radius: 18px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.steel-btn i {
+    font-size: 1.5rem;
+}
+
+.steel-btn:hover {
+    transform: scale(1.07);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35),
+        inset 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+.steel-btn:active {
+    transform: scale(0.95);
+}
+
+footer {
+    margin-top: 70px;
+    font-size: 0.95rem;
+    color: #f3f3f3;
+    opacity: 0.9;
+    animation: fadeIn 2s ease forwards;
+}
+
+  </style>
+</head>
+<body>
+
+
+  <h1>“One organ donor can save up to 8 lives and heal over 75 more.”</h1>
+  <p>Your decision today can be the reason someone smiles tomorrow ❤</p>
+
+
+  <div class="btn-container">
+    <a href="donor-registration.html"><button class="steel-btn" onclick="location.href='register-donor.html'">
+      <i class="fas fa-hand-holding-heart"></i> Register as Donor
+    </button>
+    </a>
+    <a href="patient-registration.html">
+    <button class="steel-btn" onclick="location.href='register-recipient.html'">
+      <i class="fas fa-user-injured"></i> Register as Recipient
+    </button>
+  </div>
+  </a>
+  <footer>
+    © 2025 Organ Donation Platform | Together, we give the gift of life
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" href="images/organ-donation-logo-new.svg">
+        <script src="../main.js"></script>
+        <title>Patient Registration</title>
+
+<style>
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom right, #e8f6ff, #f5faff);
+    margin: 0;
+    padding: 40px 0;
+}
+
+.form-bg {
+    background: #f2f2f2;
+    padding: 30px 25px;
+    border-radius: 14px;
+    width: 75%;
+    max-width: 1000px;
+    margin: auto;
+    color: #2c3e50;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.form-bg:hover {
+    transform: translateY(-3px);
+}
+
+.form-bg input,
+.form-bg select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 5px 0 18px 0;
+    border-radius: 10px;
+    border: 1px solid #cfd8dc;
+    background: #ffffff;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+
+.form-bg input:focus,
+.form-bg select:focus {
+    border-color: #3fd7fd;
+    box-shadow: 0 0 6px rgba(63, 215, 253, 0.5);
+    outline: none;
+}
+
+.gender-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.gender-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.organ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px 18px;
+    margin-bottom: 20px;
+}
+
+.organ-grid label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fdfefe;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #d9e4ea;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.organ-grid label:hover {
+    background: #e8f6ff;
+    border-color: #a7d9ff;
+}
+
+.patient-consent {
+    font-weight: 600;
+    margin-top: 20px;
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #d9e4ec;
+}
+
+.patient-consent p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.patient-consent label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.patient-consent input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.btn-primary.register {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #3fd7fd, #2ca8c7);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: 0.3s ease;
+}
+
+.btn-primary.register:hover {
+    background: linear-gradient(145deg, #2ca8c7, #3fd7fd);
+    transform: translateY(-3px);
+}
+
+#patientCard > div {
+    background: #f8f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #cfd8dc;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 768px) {
+    .form-bg {
+        width: 95%;
+        padding: 20px 15px;
+    }
+}
+
+</style>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+   (function(){
+      emailjs.init("2vlgmOf1oWpcqf0hD");
+   })();
+</script>
+
+    </head>
+
+    <body>        
+        <main>        
+            <h3 style="
+    text-align: center; 
+    font-weight: 700; 
+    color: #2c2c2c; 
+    margin-bottom: 20px; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+">Register an organ acceptor</h3>
+            <div class="col-md-4 form-bg">
+    <p>Full Name: <input type="text" id="PatientFullName" placeholder="Full Name"></p>
+    <p>Age: <input type="number" id="PatientAge" placeholder="Age"></p>
+    <p>Email: <input type="email" id="PatientEmail" placeholder="Email Address"></p>
+    <p>Phone: <input type="tel" id="PatientPhone" placeholder="Phone Number"></p>
+    <p>Address: <input type="text" id="PatientAddress" placeholder="Street Address"></p>
+    <p>City: <input type="text" id="PatientCity" placeholder="City"></p>
+    <p>State: <input type="text" id="PatientState" placeholder="State"></p>
+
+    <form>
+        <p><strong>Gender:</strong></p>
+<div class="gender-group">
+    <label>
+        <input type="radio" name="gender" value="Male">
+        Male
+    </label>
+    <label>
+        <input type="radio" name="gender" value="Female">
+        Female
+    </label>
+    <label>
+        <input type="radio" name="gender" value="Others">
+        Others
+    </label>
+</div>
+    </form>
+           <p>Medical ID: 
+    <input type="text" id="PatientMedicalID" placeholder="Enter 12-digit Aadhaar Number"
+           maxlength="12"
+           oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+</p>
+
+    <form>
+        <label><p>Blood Type:</p></label>
+        <select name="bloodtype" id="PatientBloodType">
+            <option value="A-">A-</option>
+            <option value="A+">A+</option>
+            <option value="B-">B-</option>
+            <option value="B+">B+</option>
+            <option value="AB-">AB-</option>
+            <option value="AB+">AB+</option>
+            <option value="O-">O-</option>
+            <option value="O+">O+</option>
+        </select>
+    </form><br>
+
+    <form>
+        <p><strong>Organ(s):</strong></p>
+<div class="organ-grid">
+       <label><input type="checkbox" name="Organ" value="Heart"> Heart</label>
+        <label><input type="checkbox" name="Organ" value="Left Kidney"> Left Kidney</label>
+        <label><input type="checkbox" name="Organ" value="Right Kidney"> Right Kidney</label>
+        <label><input type="checkbox" name="Organ" value="Part of Pancreas"> Part of Pancreas</label>
+        <label><input type="checkbox" name="Organ" value=" part of Intestine"> Part of Intestine</label>
+        <label><input type="checkbox" name="Organ" value="part of Liver"> part of Liver</label>
+        <label><input type="checkbox" name="Organ" value="Part of lung"> Part of lung</label>
+        <label><input type="checkbox" name="Organ" value="Skin"> Skin</label>
+        <label><input type="checkbox" name="Organ" value="Bone Marrow"> Bone Marrow</label>
+        <label><input type="checkbox" name="Organ" value="Tendon"> Tendon</label>
+        <label><input type="checkbox" name="Organ" value="Cartilage"> Cartilage</label>
+        <label><input type="checkbox" name="Organ" value="Lungs"> Lungs </label>
+        <label><input type="checkbox" name="Organ" value="Liver"> Liver</label>
+        <label><input type="checkbox" name="Organ" value="Kidneys"> Kidneys</label>
+        <label><input type="checkbox" name="Organ" value="Pancreas"> Pancreas</label>
+        <label><input type="checkbox" name="Organ" value="Intestine"> Intestine</label>
+        <label><input type="checkbox" name="Organ" value="Corneas"> Corneas (Eyes)</label>
+    
+    
+</div>
+    </form>
+
+<p>Emergency Contact Name: <input type="text" id="PatientEmergencyName" placeholder="Full Name"></p>
+<p>Emergency Contact Phone: <input type="tel" id="PatientEmergencyPhone" placeholder="Phone Number"></p>
+<p>Relationship with Emergency Contact: <input type="text" id="PatientEmergencyRelation" placeholder="Father, Sister, etc."></p>
+<p>Height (cm): <input type="number" id="PatientHeight" placeholder="Height"></p>
+<p>Weight (kg): <input type="number" id="PatientWeight" placeholder="Weight"></p>
+<p>Existing Conditions: <input type="text" id="PatientConditions" placeholder="e.g., Diabetes, Hypertension"></p>
+<p>Date of Birth: <input type="date" id="PatientDOB"></p>
+<p>Registration Date: <input type="date" id="PatientRegistrationDate"></p>
+<p>Preferred Transplant Type: 
+   <select id="PatientTransplantType">
+       <option value="Deceased Donor">Deceased Donor</option>
+       <option value="Living Donor">Living Donor</option>
+   </select>
+</p>
+<p>Hospital / Medical Center: <input type="text" id="PatientHospital" placeholder="Hospital Name"></p>
+<p>Priority Status: 
+   <select id="PatientPriority">
+       <option value="Normal">Normal</option>
+       <option value="High">High</option>
+       <option value="Critical">Critical</option>
+   </select>
+<div class="patient-consent">
+    <p>Consent:</p>
+    <label>
+        <input type="checkbox" id="PatientConsent1">
+        I consent to receive organ transplant according to medical guidance.
+    </label>
+
+    <label>
+        <input type="checkbox" id="PatientConsent2">
+        I confirm that all the information provided above is accurate and complete.
+    </label>
+
+    <label>
+        <input type="checkbox" id="PatientConsent3">
+        I understand that the transplant will be performed based on medical evaluation and availability.
+    </label>
+
+    <label>
+        <input type="checkbox" id="PatientConsent4">
+        I authorize the medical team to access my medical records for transplant purposes.
+    </label>
+
+    <label>
+        <input type="checkbox" id="PatientConsent5">
+        I am aware that I can withdraw my consent for the transplant at any time before the procedure.
+    </label>
+</div>
+
+
+
+
+
+    <div id="register">
+        <button type="submit" class="btn btn-primary register" onclick="App.register('Patient'); registerPatientCard();">
+            Register
+        </button>
+    </div>
+</div>
+
+<div id="patientCard" style="display:none; margin-top:20px;">
+    <div style="
+        border: 1px solid #ccc; 
+        padding: 20px; 
+        border-radius: 10px; 
+        background: #f5f5f5; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        width: 300px;
+    ">
+        <h3>Patient Registered!</h3>
+        <p><strong>Name:</strong> <span id="patientCardName"></span></p>
+        <p><strong>Medical ID:</strong> <span id="patientCardID"></span></p>
+    </div>
+</div>
+
+<script>
+
+function registerPatientCard() {
+    const name  = document.getElementById("PatientFullName").value;
+    const id    = document.getElementById("PatientMedicalID").value;
+    const email = document.getElementById("PatientEmail").value;
+    const blood = document.getElementById("PatientBloodType").value;
+    let organsNeeded = [];
+    document.querySelectorAll("input[name='Organ']:checked").forEach(o => {
+        organsNeeded.push(o.value);
+    });
+
+    if (name === "" || id === "" || email === "") {
+        alert("Please fill Name, Medical ID, Email.");
+        return;
+    }
+    if (id.length !== 12) {
+    alert("Aadhaar number must be 12 digits.");
+    return;
+    }
+ 
+
+    if (organsNeeded.length === 0) {
+        alert("Select organs needed.");
+        return;
+    }
+
+    document.getElementById("patientCardName").textContent = name;
+    document.getElementById("patientCardID").textContent = id;
+    document.getElementById("patientCard").style.display = "block";
+
+    const patientObj = {
+        name: name,
+        id: id,
+        email: email,
+        blood: blood,
+        organsNeeded: organsNeeded
+    };
+
+    let patients = JSON.parse(localStorage.getItem("patients")) || [];
+    patients.push(patientObj);
+    localStorage.setItem("patients", JSON.stringify(patients));
+
+    checkAndNotifyMatch(patientObj);
+
+    sendPatientEmail(email, name, id);
+
+    document.getElementById("PatientFullName").value = "";
+    document.getElementById("PatientMedicalID").value = "";
+    document.getElementById("PatientEmail").value = "";
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const today = new Date().toISOString().split("T")[0];
+    const regDateInput = document.getElementById("PatientRegistrationDate");
+    if (regDateInput) {
+        regDateInput.value = today;
+    }
+});
+
+function sendPatientEmail(email, name, id) {
+    emailjs.send("service_vz9sa28", "template_d913cty", {
+        patient_email: email,
+        patient_name: name,
+        patient_id: id
+    })
+    .then(function () {
+        alert("Confirmation email sent to patient!");
+    }, function (error) {
+        alert("Failed to send email. Error: " + JSON.stringify(error));
+    });
+}
+
+
+function isBloodCompatible(donorBlood, patientBlood) {
+    const rules = {
+        "O-": ["O-","O+","A-","A+","B-","B+","AB-","AB+"],
+        "O+": ["O+","A+","B+","AB+"],
+        "A-": ["A-","A+","AB-","AB+"],
+        "A+": ["A+","AB+"],
+        "B-": ["B-","B+","AB-","AB+"],
+        "B+": ["B+","AB+"],
+        "AB-": ["AB-","AB+"],
+        "AB+": ["AB+"]
+    };
+    return (rules[donorBlood] || []).includes(patientBlood);
+}
+
+
+function checkAndNotifyMatch(patient) {
+    let donors = JSON.parse(localStorage.getItem("donors")) || [];
+
+    for (let donor of donors) {
+
+        let organMatch = donor.organs.some(o => patient.organsNeeded.includes(o));
+
+        if (!organMatch) continue;
+        if (!isBloodCompatible(donor.blood, patient.blood)) continue;
+        sendOrganMatchEmail(donor.email, donor.name, patient.organsNeeded.join(", "));
+
+        alert("Matching donor found and notified!");
+        return;
+    }
+
+    alert("No matching donor found yet.");
+}
+
+function sendOrganMatchEmail(email, name, organ) {
+
+    let message = `
+Hello ${name},
+
+Good news! Your donated organ (${organ}) has been matched to a patient in need.
+The medical team will contact you shortly for further steps.
+
+Thank you for saving a life.
+`;
+
+    emailjs.send("service_vz9sa28", "template_is9gsv8", {
+        donor_email: email,
+        email_message: message
+    });
+}
+
+
+
+async function checkAndNotifyMatch(patientObj) {
+    console.log("Checking blockchain donors...");
+    let emailMap = JSON.parse(localStorage.getItem("donorEmails")) || {};
+    let donorIDs = await App.contractInstance.methods.getAllDonorIDs().call();
+    let donorCount = donorIDs.length;
+
+    for (let i = 0; i < donorCount; i++) {
+
+        let donorID = donorIDs[i];
+        let donorData = await App.contractInstance.methods.getDonor(donorID).call();
+
+        let donorName = donorData[0];
+        let donorBlood = donorData[3];
+        let donorOrgans = donorData[4]; 
+        if (donorBlood !== patientObj.blood) continue;
+        let organMatch = donorOrgans.some(org => patientObj.organsNeeded.includes(org));
+        if (!organMatch) continue;
+        let donorEmail = emailMap[donorID];
+
+        if (!donorEmail) {
+            console.log("❌ Donor email not found for:", donorID);
+            continue;
+        }
+        sendOrganMatchEmail(donorEmail, donorName, patientObj.organsNeeded.join(", "));
+
+        alert("✔ Match found! Donor notified: " + donorName);
+        return;
+    }
+
+    alert("❌ No matching donor found.");
+}
+
+
+function sendOrganMatchEmail(email, donorName, organ) {
+
+    let message = `
+Hello ${donorName},
+
+Good news! Your donated organ (${organ}) has been matched to a patient.
+The medical team will contact you shortly.
+
+Thank you for saving a life.
+`;
+
+    emailjs.send("service_e90fufu", "template_xfoy4vi", {
+        donor_email: email,
+        email_message: message
+    })
+    .then(() => console.log("Match notification sent"))
+    .catch((err) => console.log("Match email failed:", err));
+}
+ 
+</script>
+                <div class="container">
+                    <div class="row center-box">
+                        <div class="col-md-5">
+                            <div class="alert warning">
+                                <span id="PatientInputCheck"></span> 
+                                <span class="closebtn" onclick="App.closeAlert();">&times;</span>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+        </main>  
+
+    </body>
+</html>
+

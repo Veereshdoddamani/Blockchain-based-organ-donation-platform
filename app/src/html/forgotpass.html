@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forgot Password</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #c9e9ff, #a1c4fd); /* soft blue gradient */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #ffffff;
+  border-radius: 18px;
+  width: 360px;
+  padding: 35px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1a4a7a;  /* navy blue */
+}
+
+input {
+  width: 92%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #b7c8da;
+  font-size: 15px;
+  outline: none;
+  background: #f7f9fc;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #1a4a7a;
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(26, 74, 122, 0.3);
+}
+
+button {
+  width: 96%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  
+  background: #1a4a7a;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #12385c;
+  transform: translateY(-2px);
+}
+
+#msg {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #12385c;
+}
+
+a {
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #12385c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy_7GuMOtMpeI1e5piI97zzo6RNNqSLNU",
+      authDomain: "my-forgot-password.firebaseapp.com",
+      projectId: "my-forgot-password",
+      storageBucket: "my-forgot-password.appspot.com",
+      messagingSenderId: "367097862323",
+      appId: "1:367097862323:web:addeb8c4f9851eacbef8c6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.sendReset = function () {
+      const email = document.getElementById("email").value;
+      if (!email) {
+        document.getElementById("msg").innerText = "⚠ Please enter your email!";
+        return;
+      }
+
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          document.getElementById("msg").innerText = "✅ Reset link sent to " + email;
+        })
+        .catch((error) => {
+          document.getElementById("msg").innerText = "❌ " + error.message;
+        });
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Forgot Password</h2>
+    <input type="email" id="email" placeholder="Enter your registered email" required><br>
+    <button onclick="sendReset()">Send Reset Link</button>
+    <p id="msg"></p>
+    <a href="mainlogin.html">⬅ Back to Login</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <style>
+  body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #ffffff;
+  border-radius: 18px;
+  width: 370px;
+  padding: 35px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease-in-out;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  margin-bottom: 18px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #2c3e50;  
+}
+
+input {
+  width: 92%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #d4d4d4;
+  font-size: 15px;
+  outline: none;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #4ca1af;  
+  background: #fff;
+  box-shadow: 0 0 6px rgba(76, 161, 175, 0.4);
+}
+
+button {
+  width: 95%;
+  padding: 13px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4ca1af, #2c3e50); 
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+#msg {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+  white-space: pre-line;
+}
+
+a {
+  color: #2c3e50;
+  margin-top: 12px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy_7GuMOtMpeI1e5piI97zzo6RNNqSLNU",
+      authDomain: "my-forgot-password.firebaseapp.com",
+      projectId: "my-forgot-password",
+      storageBucket: "my-forgot-password.appspot.com",
+      messagingSenderId: "367097862323",
+      appId: "1:367097862323:web:addeb8c4f9851eacbef8c6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.registerUser = function () {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const dob = document.getElementById("dob").value;
+      const city = document.getElementById("city").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const today = new Date();
+      const birthDate = new Date(dob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      if (age < 18) {
+        document.getElementById("msg").innerText = "❌ You must be at least 18 years old to register.";
+        return; 
+      }
+
+     
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          document.getElementById("msg").innerText =
+            "✅ Registered successfully!\n" +
+            "Name: " + firstName + " " + lastName + "\n" +
+            "DOB: " + dob + " (Age: " + age + ")\n" +
+            "City: " + city + "\n" +
+            "Email: " + email;
+        })
+        .catch((error) => {
+          document.getElementById("msg").innerText = "❌ " + error.message;
+        });
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+
+    <input type="text" id="firstName" placeholder="First Name" required><br>
+    <input type="text" id="lastName" placeholder="Last Name" required><br>
+    <input type="date" id="dob" required><br>
+    <input type="text" id="city" placeholder="City" required><br>
+    <input type="email" id="email" placeholder="Enter Email" required><br>
+    <input type="password" id="password" placeholder="Enter Password" required><br>
+
+    <button onclick="registerUser()">Register</button>
+    <p id="msg"></p>
+    <a href="mainlogin.html">Already have an account? Login</a>
+  </div>
+</body>
+</html>
