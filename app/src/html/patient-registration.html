@@ -393,14 +393,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function sendPatientEmail(email, name, id) {
-    emailjs.send("service_vz9sa28", "template_d913cty", {
+    emailjs.send("service_e90fufu", "template_xfoy4vi", {
         patient_email: email,
         patient_name: name,
         patient_id: id
     })
     .then(function () {
         alert("Confirmation email sent to patient!");
-    }, function (error) {
+    })
+    .catch(function (error) {
         alert("Failed to send email. Error: " + JSON.stringify(error));
     });
 }
@@ -439,22 +440,6 @@ function checkAndNotifyMatch(patient) {
     alert("No matching donor found yet.");
 }
 
-function sendOrganMatchEmail(email, name, organ) {
-
-    let message = `
-Hello ${name},
-
-Good news! Your donated organ (${organ}) has been matched to a patient in need.
-The medical team will contact you shortly for further steps.
-
-Thank you for saving a life.
-`;
-
-    emailjs.send("service_vz9sa28", "template_is9gsv8", {
-        donor_email: email,
-        email_message: message
-    });
-}
 
 
 
@@ -491,24 +476,6 @@ async function checkAndNotifyMatch(patientObj) {
 }
 
 
-function sendOrganMatchEmail(email, donorName, organ) {
-
-    let message = `
-Hello ${donorName},
-
-Good news! Your donated organ (${organ}) has been matched to a patient.
-The medical team will contact you shortly.
-
-Thank you for saving a life.
-`;
-
-    emailjs.send("service_e90fufu", "template_xfoy4vi", {
-        donor_email: email,
-        email_message: message
-    })
-    .then(() => console.log("Match notification sent"))
-    .catch((err) => console.log("Match email failed:", err));
-}
  
 </script>
                 <div class="container">
